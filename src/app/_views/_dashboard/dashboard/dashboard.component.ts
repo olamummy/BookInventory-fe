@@ -13,6 +13,15 @@ export class DashboardComponent implements OnInit {
   commentLists: any = [];
   message: string = "";
 
+  anAuthor: any = "";
+  first_name: string = "";
+  last_name: string = "";
+  email: string = "";
+  location: string ="";
+  id:number = 0;
+
+  book_id:number = 0;
+
   constructor(private service: DashboardService) { }
 
   ngOnInit(): void {
@@ -40,15 +49,19 @@ export class DashboardComponent implements OnInit {
     //error => this.displayError(error));
   }
 
-  onClickSubmit(data: NgForm) {
-    this.createCompany(data);
+  viewComment(id:number) {
+    this.book_id = id;
   }
 
-  createCompany(data: NgForm): void {
+  onClickSubmit(data: NgForm) {
+    this.createComment(data);
+  }
+
+  createComment(data: NgForm): void {
 
     console.log("test" + JSON.stringify(data));
 
-    this.service.createCompany(data, 1)
+    this.service.createCompany(data, this.book_id)
       .subscribe(
         data => {
           console.log(data);
@@ -58,6 +71,21 @@ export class DashboardComponent implements OnInit {
           console.log(error);
           this.displayError(error);
         })
+  }
+
+  getAnAuthor(id: number) {
+    this.service.getAnAuthor(id)
+      .subscribe(
+        res => {
+          this.anAuthor = res;
+          console.log("TTTTTTTT  " + this.anAuthor);
+          this.last_name = this.anAuthor.last_name;
+          this.first_name = this.anAuthor.first_name;
+          this.location = this.anAuthor.location;
+          this.email = this.anAuthor.email;
+          this.id = this.anAuthor.id;
+        })//,
+    //error => this.displayError(error));
   }
 
   displayError(error: Response) {

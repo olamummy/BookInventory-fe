@@ -1,7 +1,6 @@
 <!-- <p>dashboard works!</p> -->
 <div class="container">
-    <h2>Striped Rows</h2>
-    <p>The .table-striped class adds zebra-stripes to a table:</p>
+    <h2>Author</h2>
     <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Add
         Author</button>
     <table class="table table-striped">
@@ -27,9 +26,9 @@
                 <td>{{List.location}}</td>
                 <td>{{List.created_at}}</td>
                 <td>{{List.updated_at}}</td>
-                <td><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#updateModal"
+                <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#updateModal"
                         (click)=getAnAuthor(List.id)>Update
-                        Author</button> | <button type="button" class="btn btn-info btn-lg" data-toggle="modal"
+                        Author</button> | <button type="button" class="btn btn-info" data-toggle="modal"
                         data-target="#myModalComment" (click)=getbooks(List.id)>View Book</button></td>
             </tr>
         </tbody>
@@ -123,17 +122,21 @@
 
                     <input type="text" hidden name="id" placeholder="First Name" [ngModel]="id">
                     <br />
-                    
+
+                    <label>First Name:</label><br />
                     <input type="text" name="first_name" placeholder="First Name" [ngModel]="first_name">
                     <br />
 
+                    <label>Last Name:</label><br />
                     <input type="text" name="last_name" placeholder="Last Name" [ngModel]="first_name">
                     <br />
 
-                    <input type="text" name="email" placeholder="Email"  [ngModel]="email">
+                    <label>Email:</label><br />
+                    <input type="text" name="email" placeholder="Email" [ngModel]="email">
                     <br />
 
-                    <input type="text" name="location" placeholder="Location"  [ngModel]="location">
+                    <label>Location:</label><br />
+                    <input type="text" name="location" placeholder="Location" [ngModel]="location">
                     <br />
 
                     <input type="submit" value="submit">

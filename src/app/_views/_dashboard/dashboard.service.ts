@@ -31,14 +31,10 @@ export class DashboardService {
     return this.http.post(this.API_URL + 'books/' + id + '/comments', name , { headers })
   }
 
-  // post(url, body, authorized) {
-
-  //   let user = JSON.parse(localStorage.getItem('currentUser'));
-
-
-  //   return this.http.post(url, body, { headers: headers })
-  //     .pipe(catchError(this.handleError));
-  // }
+  getAnAuthor(id:number) {
+    const headers = new HttpHeaders({ 'Authorization': 'Bearer ' + "this.token" })
+    return this.http.get(this.API_URL + 'authors/' + id, { headers })
+  }
 
 
   handleError(error: HttpErrorResponse) {

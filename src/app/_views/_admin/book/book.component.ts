@@ -18,6 +18,12 @@ export class BookComponent implements OnInit {
   author_id: number = 0;
   id: number = 0;
 
+  anAuthor: any = "";
+  first_name: string = "";
+  last_name: string = "";
+  email: string = "";
+  location: string ="";
+
   constructor(private service: BookService) { }
 
   ngOnInit(): void {
@@ -97,6 +103,20 @@ export class BookComponent implements OnInit {
           console.log(error);
           this.displayError(error);
         })
+  }
+
+  getAnAuthor(id: number) {
+    this.service.getAnAuthor(id)
+      .subscribe(
+        res => {
+          this.anAuthor = res;
+          console.log("TTTTTTTT  " + this.anAuthor);
+          this.last_name = this.anAuthor.last_name;
+          this.first_name = this.anAuthor.first_name;
+          this.location = this.anAuthor.location;
+          this.email = this.anAuthor.email;
+        })//,
+    //error => this.displayError(error));
   }
 
   displayError(error: Response) {

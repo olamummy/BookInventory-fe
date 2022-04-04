@@ -59,6 +59,11 @@ export class BookService {
     return this.http.delete(this.API_URL + 'books/' + id ,  { headers })
   }
 
+  getAnAuthor(id:number) {
+    const headers = new HttpHeaders({ 'Authorization': 'Bearer ' + "this.token" })
+    return this.http.get(this.API_URL + 'authors/' + id, { headers })
+  }
+
   handleError(error: HttpErrorResponse) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {

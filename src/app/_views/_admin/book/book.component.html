@@ -1,4 +1,5 @@
 <div class="container">
+    <h2>Book</h2>
     <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Add Book</button>
     <table class="table table-striped">
         <thead>
@@ -7,7 +8,7 @@
                 <th>title</th>
                 <th>created_at</th>
                 <th>updated_at</th>
-                <th>Author</th>
+                <!-- <th>Author</th> -->
                 <th>Action</th>
             </tr>
         </thead>
@@ -17,11 +18,13 @@
                 <td>{{List.title}}</td>
                 <td>{{List.created_at}}</td>
                 <td>{{List.updated_at}}</td>
-                <td>{{List.author_id}}</td>
-                <td><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#updateModal"
+                <!-- <td>{{List.author_id}}</td> -->
+                <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#updateModal"
                         (click)=getABook(List.id)>Update Book</button> | <button type="button"
-                        class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModalComment"
-                        (click)=getComments(List.id)>View Comment</button></td>
+                        class="btn btn-info" data-toggle="modal" data-target="#myModalComment"
+                        (click)=getComments(List.id)>View Comment</button>|<button
+                        type="button" class="btn btn-info" data-toggle="modal" data-target="#viewAuthor"
+                        (click)=getAnAuthor(List.author_id)>View Author</button></td>
             </tr>
         </tbody>
     </table>
@@ -120,6 +123,42 @@
 
                     <input type="submit" value="submit">
                 </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="viewAuthor" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">View Author</h4>
+            </div>
+            <div class="modal-body">
+                <p>View Author</p>
+
+                <label>first Name:</label><br />
+                <input type="text" name="first_name" readonly placeholder="First Name" [ngModel]="first_name">
+                <br />
+
+                <label>Last Name:</label><br />
+                <input type="text" name="last_name" readonly placeholder="Last Name" [ngModel]="first_name">
+                <br />
+
+                <label>Email:</label><br />
+                <input type="text" name="email" readonly placeholder="Email" [ngModel]="email">
+                <br />
+
+                <label>Location:</label><br />
+                <input type="text" name="location" readonly placeholder="Location" [ngModel]="location">
+                <br />
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
