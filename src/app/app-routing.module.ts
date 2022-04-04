@@ -6,7 +6,7 @@ import { BookComponent } from './_views/_admin/book/book.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 export const routes: Routes = [
-  { path: "", pathMatch:"full", redirectTo:"dashboard" },
+  { path: "/", pathMatch:"full", redirectTo:"dashboard" },
   { path: "dashboard", component: DashboardComponent },
   { path: "author", component: AuthorComponent },
   { path: "book", component: BookComponent },
