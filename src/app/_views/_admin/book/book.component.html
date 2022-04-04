@@ -1,0 +1,129 @@
+<div class="container">
+    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Add Book</button>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>S/N</th>
+                <th>title</th>
+                <th>created_at</th>
+                <th>updated_at</th>
+                <th>Author</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let List of bookLists; let i = index" [attr.data-index]="i">
+                <td>{{i + 1}} </td>
+                <td>{{List.title}}</td>
+                <td>{{List.created_at}}</td>
+                <td>{{List.updated_at}}</td>
+                <td>{{List.author_id}}</td>
+                <td><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#updateModal"
+                        (click)=getABook(List.id)>Update Book</button> | <button type="button"
+                        class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModalComment"
+                        (click)=getComments(List.id)>View Comment</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add Book</h4>
+            </div>
+            <div class="modal-body">
+                <p *ngIf="message">{{message}}!</p>
+                <form #userlogin="ngForm" (ngSubmit)="onClickSubmit(userlogin.value)">
+                    <input type="text" name="title" placeholder="Title" ngModel>
+                    <br />
+                    <input type="text" name="author_id" placeholder="Author" ngModel>
+                    <br />
+                    <input type="submit" value="submit">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="myModalComment" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">View Comment</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>S/N</th>
+                            <th>comment</th>
+                            <th>created_at</th>
+                            <th>updated_at</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tbody>
+                        <tr *ngFor="let List of commentLists; let i = index" [attr.data-index]="i">
+                            <td>{{i + 1}} </td>
+                            <td>{{List.comment}}</td>
+                            <td>{{List.created_at}}</td>
+                            <td>{{List.updated_at}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="updateModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Update Book</h4>
+            </div>
+            <div class="modal-body">
+                <p *ngIf="message">{{message}}!</p>
+                <form #updatebook="ngForm" (ngSubmit)="updateBook(updatebook.value)">
+
+                    <input type="text" hidden name="id" placeholder="First Name" [ngModel]="id">
+                    <br />
+
+                    <label>Title:</label><br />
+                    <input type="text" name="title" placeholder="Title" [ngModel]="title">
+                    <br />
+
+                    <div class="column small-12 large-2">
+                        <label>Author:</label><br />
+                        <select name="author_id" [(ngModel)]="author_id">
+                            <option *ngFor="let List of authorLists" [value]="List.id">{{List.first_name}}</option>
+                        </select>
+                    </div>
+
+                    <input type="submit" value="submit">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

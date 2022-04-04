@@ -1,0 +1,147 @@
+<!-- <p>dashboard works!</p> -->
+<div class="container">
+    <h2>Striped Rows</h2>
+    <p>The .table-striped class adds zebra-stripes to a table:</p>
+    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Add
+        Author</button>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>S/N</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Location</th>
+                <td>Date Created</td>
+                <td>Date Updated</td>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+        <tbody>
+            <tr *ngFor="let List of authorLists; let i = index" [attr.data-index]="i">
+                <td>{{i + 1}} </td>
+                <td>{{List.first_name}}</td>
+                <td>{{List.last_name}}</td>
+                <td>{{List.email}}</td>
+                <td>{{List.location}}</td>
+                <td>{{List.created_at}}</td>
+                <td>{{List.updated_at}}</td>
+                <td><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#updateModal"
+                        (click)=getAnAuthor(List.id)>Update
+                        Author</button> | <button type="button" class="btn btn-info btn-lg" data-toggle="modal"
+                        data-target="#myModalComment" (click)=getbooks(List.id)>View Book</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body">
+                <p>Please add Auther here</p>
+                <p *ngIf="message">{{message}}!</p>
+                <form #userlogin="ngForm" (ngSubmit)="onClickSubmit(userlogin.value)">
+                    <input type="text" name="first_name" placeholder="First Name" ngModel>
+                    <br />
+                    <input type="text" name="last_name" placeholder="Last Name" ngModel>
+                    <br />
+                    <input type="text" name="email" placeholder="Email" ngModel>
+                    <br />
+                    <input type="text" name="location" placeholder="Location" ngModel>
+                    <br />
+                    <input type="submit" value="submit">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="myModalComment" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body">
+                <p>Please add comment here</p>
+
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>S/N</th>
+                            <th>title</th>
+                            <th>created_at</th>
+                            <th>updated_at</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tbody>
+                        <tr *ngFor="let List of bookLists; let i = index" [attr.data-index]="i">
+                            <td>{{i + 1}} </td>
+                            <td>{{List.title}}</td>
+                            <td>{{List.created_at}}</td>
+                            <td>{{List.updated_at}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="updateModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body">
+                <p>Please Update Author here</p>
+                <p *ngIf="message">{{message}}!</p>
+                <form #updateauthor="ngForm" (ngSubmit)="updateAuthor(updateauthor.value)">
+
+                    <input type="text" hidden name="id" placeholder="First Name" [ngModel]="id">
+                    <br />
+                    
+                    <input type="text" name="first_name" placeholder="First Name" [ngModel]="first_name">
+                    <br />
+
+                    <input type="text" name="last_name" placeholder="Last Name" [ngModel]="first_name">
+                    <br />
+
+                    <input type="text" name="email" placeholder="Email"  [ngModel]="email">
+                    <br />
+
+                    <input type="text" name="location" placeholder="Location"  [ngModel]="location">
+                    <br />
+
+                    <input type="submit" value="submit">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
