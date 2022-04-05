@@ -8,7 +8,6 @@
                 <th>title</th>
                 <th>created_at</th>
                 <th>updated_at</th>
-                <!-- <th>Author</th> -->
                 <th>Action</th>
             </tr>
         </thead>
@@ -19,8 +18,8 @@
                 <td>{{List.title}}</td>
                 <td>{{List.created_at}}</td>
                 <td>{{List.updated_at}}</td>
-                <!-- <td>{{List.author_id}}</td> -->
-                <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal" (click)=viewComment(List.id)>Add
+                <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal"
+                        (click)=viewComment(List.id)>Add
                         Comment</button> | <button type="button" class="btn btn-info" data-toggle="modal"
                         data-target="#myModalComment" (click)=getComments(List.id)>View Comment</button> | <button
                         type="button" class="btn btn-info" data-toggle="modal" data-target="#viewAuthor"
@@ -44,8 +43,12 @@
                 <p>Please add comment here</p>
                 <p *ngIf="message">{{message}}!</p>
                 <form #userlogin="ngForm" (ngSubmit)="onClickSubmit(userlogin.value)">
-                    <input type="text" name="comment" placeholder="comment" ngModel>
+
+                    <label>Comment:</label><br />
+                    <!-- <input type="text" name="comment" placeholder="comment" ngModel> -->
+                    <textarea name="comment" placeholder="comment" ngModel></textarea>
                     <br />
+
                     <input type="submit" value="submit">
                 </form>
             </div>
@@ -73,6 +76,7 @@
                         <tr>
                             <th>S/N</th>
                             <th>comment</th>
+                            <th>ip</th>
                             <th>created_at</th>
                             <th>updated_at</th>
                         </tr>
@@ -82,6 +86,7 @@
                         <tr *ngFor="let List of commentLists; let i = index" [attr.data-index]="i">
                             <td>{{i + 1}} </td>
                             <td>{{List.comment}}</td>
+                            <td>{{List.ip}}</td>
                             <td>{{List.created_at}}</td>
                             <td>{{List.updated_at}}</td>
                         </tr>

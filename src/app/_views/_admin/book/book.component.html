@@ -43,10 +43,21 @@
             <div class="modal-body">
                 <p *ngIf="message">{{message}}!</p>
                 <form #userlogin="ngForm" (ngSubmit)="onClickSubmit(userlogin.value)">
+                    
+                    <label>Title:</label><br />
                     <input type="text" name="title" placeholder="Title" ngModel>
                     <br />
-                    <input type="text" name="author_id" placeholder="Author" ngModel>
-                    <br />
+
+                    <!-- <input type="text" name="author_id" placeholder="Author" ngModel>
+                    <br /> -->
+
+                    <div class="column small-12 large-2">
+                        <label>Author:</label><br />
+                        <select name="author_id" ngModel>
+                            <option *ngFor="let List of authorLists" [value]="List.id">{{List.first_name}}</option>
+                        </select>
+                    </div>
+
                     <input type="submit" value="submit">
                 </form>
             </div>
@@ -72,6 +83,7 @@
                         <tr>
                             <th>S/N</th>
                             <th>comment</th>
+                            <th>ip</th>
                             <th>created_at</th>
                             <th>updated_at</th>
                         </tr>
@@ -81,6 +93,7 @@
                         <tr *ngFor="let List of commentLists; let i = index" [attr.data-index]="i">
                             <td>{{i + 1}} </td>
                             <td>{{List.comment}}</td>
+                            <td>{{List.ip}}</td>
                             <td>{{List.created_at}}</td>
                             <td>{{List.updated_at}}</td>
                         </tr>
